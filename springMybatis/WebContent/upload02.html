@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件夹上传</title>
+</head>
+<style>
+    input,select{
+        padding: 0 8px;
+        width: 200px;
+        height: 30px;
+        line-height: 30px;
+    }
+    #upload{
+        padding: 7px;
+        cursor: pointer;
+    }
+    input[type="file"]{
+        width: 160px;
+        height: 160px;
+        border: 1px dotted #ddd;
+    }
+</style>
+<body>
+    <!-- 文件夹上传 -->
+    <div id="uploadForm">
+        <input id="file" type="file" webkitdirectory/>
+        <select id="selects" name="select">
+            <option value="192.168.30.123">192.168.30.123</option>
+            <option value="192.168.30.456">192.168.30.456</option>
+            <option value="192.168.30.789">192.168.30.789</option>
+        </select>
+        <input id="ways" type="text" placeholder="你输入服务器路径" name="root">
+        <button id="upload" type="button">文件夹上传</button>
+    </div>
+
+    <script src="jquery19.js"></script>
+    <script>
+        var files = [];
+        $(document).ready(function(){
+            $('#file').change(function(){
+                files = this.files;
+            })
+
+        })
+
+        $('#upload').click(function(){
+            var select = $('#selects').val();
+            var roots = $('#ways').val();
+            var fd = new FormData();
+            fd.set('file',files)
+            fd.set('select',select)
+            fd.set('root',roots)
+            if(files ==''){
+                alert('你选择上传文件')
+                $('#file').focus()
+                return;
+            }
+            if(roots ==''){
+                alert('你输入服务器路径')
+                $('#ways').focus()
+                return;
+            }
+
+            $.ajax({
+                url: '',
+                type: 'POST',
+                cache: false,
+                data:fd,
+                processData: false,
+                contentType: false,
+                beforeSend: function(xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+                        var csrftoken = $.cookie('csrftoken');
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                },
+                success: function(data){
+                    console.log(data)
+                }
+            })
+        })
+    </script>
+</body>
+</html>

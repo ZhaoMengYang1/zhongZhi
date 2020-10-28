@@ -42,9 +42,9 @@
         <!-- 数据源 -->
         <property name="dataSource" ref="datasource"></property>
         <!-- 别名 -->
-        <property name="typeAliasesPackage" value="com.zhongZhi.springMybatis.entities"></property>
+        <property name="typeAliasesPackage" value="com.zz.springMybatis.entitys"></property>
         <!-- sql映射文件路径 -->
-        <property name="mapperLocations" value="classpath*:com/zhongZhi/springMybatis/mapper/*Mapper.xml"></property>
+        <property name="mapperLocations" value="classpath*:com/zz/springMybatis/mappers/*Mapper.xml"></property>
     </bean>
     
     <!--4 自动扫描对象关系映射 -->
@@ -52,7 +52,7 @@
         <!--指定会话工厂，如果当前上下文中只定义了一个则该属性可省去 -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
         <!-- 指定要自动扫描接口的基础包，实现接口 -->
-        <property name="basePackage" value="com.zhongZhi.springMybatis.mapper"></property>
+        <property name="basePackage" value="com.zz.springMybatis.mappers"></property>
     </bean>
     
     <!--5 声明式事务管理 -->
@@ -64,7 +64,7 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!--6 容器自动扫描IOC组件  -->
-    <context:component-scan base-package="com.zhongZhi.springMybatis"></context:component-scan>
+    <context:component-scan base-package="com.zz.springMybatis"></context:component-scan>
     
     <!--7 aspectj支持自动代理实现AOP功能 -->
     <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>

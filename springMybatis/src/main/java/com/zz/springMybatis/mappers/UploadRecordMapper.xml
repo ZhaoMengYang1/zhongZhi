@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zz.springMybatis.mappers.UploadRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.zz.springMybatis.entitys.UploadRecord" >
+    <constructor >
+      <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="path" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="folder_num" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="folder_time" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="folder_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="project_info" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, date, path, folder_num, folder_time, folder_type, project_info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from upload_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from upload_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zz.springMybatis.entitys.UploadRecord" >
+    insert into upload_record (id, name, date, 
+      path, folder_num, folder_time, 
+      folder_type, project_info)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, 
+      #{path,jdbcType=VARCHAR}, #{folderNum,jdbcType=VARCHAR}, #{folderTime,jdbcType=VARCHAR}, 
+      #{folderType,jdbcType=VARCHAR}, #{projectInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zz.springMybatis.entitys.UploadRecord" >
+    insert into upload_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="folderNum != null" >
+        folder_num,
+      </if>
+      <if test="folderTime != null" >
+        folder_time,
+      </if>
+      <if test="folderType != null" >
+        folder_type,
+      </if>
+      <if test="projectInfo != null" >
+        project_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="folderNum != null" >
+        #{folderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="folderTime != null" >
+        #{folderTime,jdbcType=VARCHAR},
+      </if>
+      <if test="folderType != null" >
+        #{folderType,jdbcType=VARCHAR},
+      </if>
+      <if test="projectInfo != null" >
+        #{projectInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zz.springMybatis.entitys.UploadRecord" >
+    update upload_record
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="folderNum != null" >
+        folder_num = #{folderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="folderTime != null" >
+        folder_time = #{folderTime,jdbcType=VARCHAR},
+      </if>
+      <if test="folderType != null" >
+        folder_type = #{folderType,jdbcType=VARCHAR},
+      </if>
+      <if test="projectInfo != null" >
+        project_info = #{projectInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zz.springMybatis.entitys.UploadRecord" >
+    update upload_record
+    set name = #{name,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      path = #{path,jdbcType=VARCHAR},
+      folder_num = #{folderNum,jdbcType=VARCHAR},
+      folder_time = #{folderTime,jdbcType=VARCHAR},
+      folder_type = #{folderType,jdbcType=VARCHAR},
+      project_info = #{projectInfo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

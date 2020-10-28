@@ -132,7 +132,12 @@
     	<artifactId>pagehelper</artifactId>
     	<version>4.2.1</version>
      </dependency>
-    
+    <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+	<dependency>
+    	<groupId>com.alibaba</groupId>
+    	<artifactId>fastjson</artifactId>
+    	<version>1.2.58</version>
+	</dependency>
   </dependencies>
   <build>
     <finalName>springMybatis</finalName>
