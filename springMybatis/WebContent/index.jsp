@@ -140,27 +140,29 @@ $(document).ready(function(){
 	  url:"jquery/test1",
 	  type : "POST",
 	  async:false,
-	  //dataType:"json",
+	  dataType:"json",
 	  success : function(result){
 		  console.log(result);
-		  alert(result);
-		 
+		 // alert(result);
+		 var content = result;
+		 console.log(result[0].folderNum);
 		  
 		  $(function() {
 			//递归
-			function createTree(data) {
+			function createTree(content) {
 			    var str = '<ul>';
-			    for (var i = 0; i < data.length; i++) {
-			        str += '<li><span>-</span>' + data[i].name;
-			        if (data[i].child) {
-			            str += createTree(data[i].child);
+			    for (var i = 0; i < content.length; i++) {
+			        str += '<li><span>-</span>' + content[i].folderNum;
+			        if (content[i].folderTime) {
+			            str += '<ul><li><span>-</span>'+content[i].folderTime;
+			            
 			        }
-			        str += '</li>';
+			        str += '</li></ul>';
 			    };
 			    str += '</ul>';
 			    return str;
 			};
-			$(".lists").html(createTree(data));
+			$(".lists").html(createTree(content));
 
 			//单击事件
 			$(".lists ul li").click(function(event) {
@@ -213,5 +215,48 @@ $(document).ready(function(){
 		<li>Milk</li>
 	</ul>
 </div>
+<div class = "test">
+	<ul>
+		<li>
+			<span>-</span>
+			IT互联网
+			<ul>
+				<li>
+					<span>-</span>
+					编辑语言
+					<ul>
+						<li>
+							<span>-</span>
+							java
+						</li>
+						<li>
+							<span>-</span>
+							c#/.net
+						</li>
+						<li>
+							<span>-</span>
+							Python
+						</li>
+						<li>
+							<span>-</span>
+							前端开发
+						</li>
+					</ul>
+				</li>
+				<li>
+					<span>-</span>
+					移动开发
+					<ul>
+						<li>
+							
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+<p>隐藏属性</p>
+<a href="treeContent/treeContent.jsp">testTreeContent</a>
 </body>
 </html>

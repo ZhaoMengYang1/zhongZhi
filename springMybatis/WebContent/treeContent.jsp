@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="${pageContext.request.contextPath}/webupload/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="webupload/js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
 
 var data = [{
@@ -148,11 +148,11 @@ $(document).ready(function(){
 		  
 		  $(function() {
 			//递归
-			function createTree(result) {
+			function createTree(data) {
 			    var str = '<ul>';
-			    for (var i = 0; i < result.length; i++) {
-			        str += '<li><span>-</span>' + result[i].name;
-			        if (result[i].child) {
+			    for (var i = 0; i < data.length; i++) {
+			        str += '<li><span>-</span>' + data[i].name;
+			        if (data[i].child) {
 			            str += createTree(data[i].child);
 			        }
 			        str += '</li>';
@@ -215,6 +215,6 @@ $(document).ready(function(){
 </div>
 
 <p>隐藏属性</p>
-
+<a href="treeContent/treeContent.jsp">testTreeContent</a>
 </body>
 </html>
